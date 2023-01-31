@@ -76,15 +76,17 @@ class RecoverController extends Controller
         }
         else{
             DB::table('accounts')->where($email_type, $request->email)->update([
-                'password' => Hash::make($request->pass)
+                'password' => Hash::make($request->password)
             ]);  
- 
+            
             $response = [
                 'title' => 'Success!',
                 'message' => 'Password updated.',
                 'icon' => 'success',
                 'status' => 200
             ];
+
+            Session::flush();
         }
 
         $response = json_encode($response, true);

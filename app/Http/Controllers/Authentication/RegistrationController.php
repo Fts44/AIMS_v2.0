@@ -98,6 +98,8 @@ class RegistrationController extends Controller
                     'icon' => 'success',
                     'status' => 200
                 ];
+                
+                Session::flush();
             }
             else{
                 $validator->errors()->add('otp', 'The otp is invalid!');

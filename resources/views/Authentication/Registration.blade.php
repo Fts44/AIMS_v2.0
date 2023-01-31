@@ -95,12 +95,8 @@
         });
 
         $('#btn_otp').click(function(e){
-
-            $('#lbl_loading_otp').removeClass('d-none');
-            $('#lbl_otp').addClass('d-none');
-            $('.invalid-feedback').html('');
-            $('.form-select, .form-control').removeClass('is-invalid');
-            $(this).prop('disabled', true);
+            reset_inputs();
+            load_btn('#lbl_otp','#lbl_loading_otp','#btn_otp',true);
 
             $.ajax({
                 type: "POST",
@@ -114,9 +110,7 @@
                 success: function(response){
                     response = JSON.parse(response);
                     console.log(response);
-                    $('#lbl_loading_otp').addClass('d-none');
-                    $('#lbl_otp').removeClass('d-none');
-                    $('#btn_otp').prop('disabled', false);
+
                     if(response.status == 400){
                         $.each(response.errors, function(key, err_values){
                             $('#'+key+'_error').html(err_values);
@@ -130,6 +124,8 @@
                 error: function(response){
                     console.log(response);
                 }
+            }).always(function(){
+                load_btn('#lbl_otp','#lbl_loading_otp','#btn_otp',false);
             });
         });
 
@@ -162,13 +158,13 @@
                             location.reload();
                         });
                     }
-                    load_btn('#lbl_register','#lbl_loading_register','#form_registration_submit',false);
                 },
                 error: function(response){
                     console.log(response);
                     swal('Failed!', 'Something went wrong! Please try again later', 'error');
-                    load_btn('#lbl_register','#lbl_loading_register','#form_registration_submit',false);
                 }
+            }).always(function(){
+                load_btn('#lbl_register','#lbl_loading_register','#form_registration_submit',false);
             });
         });
     </script>

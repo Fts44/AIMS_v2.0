@@ -45,7 +45,7 @@ class LoginController extends Controller
                 ->first();
             
             if($user){
-                if(Hash::check($request->pass, $user->password)){
+                if(Hash::check($request->password, $user->password)){
                 
                     if($user->is_verified){
                         Session(['user_id' => $user->acc_id]);
@@ -61,9 +61,11 @@ class LoginController extends Controller
                         ];
     
                         if($user->position != 'pt'){
+                            Session(['default_route' => 'infirmary_personnel']);
                             $response['redirect_to'] = route('infirmary_personnel');
                         }
                         else{
+                            Session(['default_route' => 'patient']);
                             $response['redirect_to'] = route('patient');
                         }
                     }
@@ -77,7 +79,7 @@ class LoginController extends Controller
                 else{
                     $response = [
                         'status' => 400,
-                        'errors' => ['pass' => 'Incorrect password!']
+                        'errors' => ['password' => 'Incorrect password!'],
                     ];
                 }
             }
@@ -90,5 +92,10 @@ class LoginController extends Controller
         }
 
         echo json_encode($response);
+    }
+
+    public function logout(){
+        Session::flush();
+        return redirect(route('Login.Index'));
     }
 }

@@ -67,8 +67,6 @@
             reset_inputs();
             load_btn('#lbl_otp','#lbl_loading_otp','#btn_otp',true);
 
-            $(this).prop('disabled', true);
-
             $.ajax({
                 type: "POST",
                 url: "{{ route('SendOTP') }}",
@@ -81,8 +79,6 @@
                 success: function(response){
                     response = JSON.parse(response);
                     console.log(response);
-                    load_btn('#lbl_otp','#lbl_loading_otp','#btn_otp',false);
-
                     if(response.status == 400){
                         $.each(response.errors, function(key, err_values){
                             $('#'+key+'_error').html(err_values);
@@ -92,17 +88,16 @@
                     else{
                         swal(response.title, response.message, response.icon);
                     }
-                    load_btn('#lbl_otp','#lbl_loading_otp','#btn_otp',false);
                 },
                 error: function(response){
                     console.log(response);
-                    load_btn('#lbl_otp','#lbl_loading_otp','#btn_otp',false);
                 }
+            }).always(function(){
+                load_btn('#lbl_otp','#lbl_loading_otp','#btn_otp',false);
             });
         });
         
         $('#form_recover_submit').click(function(e){
-
             reset_inputs();
             load_btn('#lbl_recover','#lbl_loading_recover','#form_recover_submit',true);
 
@@ -130,13 +125,13 @@
                             location.reload();
                         });
                     }
-                    load_btn('#lbl_recover','#lbl_loading_recover','#form_recover_submit',false);
                 },
                 error: function(response){
                     console.log(response);
                     swal('Failed!', 'Something went wrong! Please try again later', 'error');
-                    load_btn('#lbl_recover','#lbl_loading_recover','#form_recover_submit',false);
                 }
+            }).always(function(){
+                load_btn('#lbl_recover','#lbl_loading_recover','#form_recover_submit',false);
             });
         });
     </script>

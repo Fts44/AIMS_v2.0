@@ -83,16 +83,13 @@
                             $('#'+key).addClass('is-invalid');
                         });
                     }
-                    else{
-                        swal(response.title, response.message, response.icon);
-                    }
-                    load_btn('#lbl_login','#lbl_loading_login','#form_login_submit',false);
                 },
                 error: function(response){
                     console.log(response);
                     swal('Failed!', 'Something went wrong! Please try again later', 'error');
-                    load_btn('#lbl_login','#lbl_loading_login','#form_login_submit',false);
                 }
+            }).always(function(){
+                load_btn('#lbl_login','#lbl_loading_login','#form_login_submit',false);
             });
         });
     </script>
