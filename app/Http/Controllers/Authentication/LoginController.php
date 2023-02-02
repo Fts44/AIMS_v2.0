@@ -56,18 +56,17 @@ class LoginController extends Controller
                         Session(['user_profilepic' => $user->pfp]);
                         Session(['last_activity_time' => time()+60*5]);
 
-                        $response = [
-                            'status' => 200,
-                        ];
-    
                         if($user->position != 'pt'){
                             Session(['default_route' => 'infirmary_personnel']);
-                            $response['redirect_to'] = route('infirmary_personnel');
                         }
                         else{
                             Session(['default_route' => 'patient']);
-                            $response['redirect_to'] = route('patient');
                         }
+
+                        $response = [
+                            'status' => 200,
+                            'default_route' => route(Session('default_route'))
+                        ];
                     }
                     else{
                         $response = [

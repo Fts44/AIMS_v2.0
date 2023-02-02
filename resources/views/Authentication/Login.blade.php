@@ -83,6 +83,9 @@
                             $('#'+key).addClass('is-invalid');
                         });
                     }
+                    else{
+                        location.href=response.default_route;
+                    }
                 },
                 error: function(response){
                     console.log(response);
