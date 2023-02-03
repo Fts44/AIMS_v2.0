@@ -412,8 +412,9 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .logo span {
     font-size: 17px;
-    font-weight: 600;
-    color: #262626;
+    font-weight: 900;
+    font-family: "Tahoma", sans-serif;
+    color: #aa033b;
   }
   
   a.logo {
@@ -433,9 +434,10 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .header .toggle-sidebar-btn {
     font-size: 32px;
+    font-weight: 900;
     padding-left: 10px;
     cursor: pointer;
-    color: #012970;
+    color: #aa033b;
   }
   .header .search-bar {
     min-width: 360px;
@@ -504,11 +506,11 @@ input[type=number]::-webkit-outer-spin-button {
     color: #012970;
   }
   .header-nav .nav-profile {
-    color: #012970;
+    color: #aa033b;
   }
   .header-nav .nav-profile img {
     max-height: 40px;
-    border: #999 1px solid;
+    border: #aa033b 2px solid;
     border-radius: 50%;
   }
   .header-nav .nav-profile span {
@@ -594,10 +596,15 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 14px;
     margin-bottom: 0;
     font-weight: 600;
+    font-family: "Monsterrat", sans-serif;
     color: #444444;
   }
   .header-nav .profile .dropdown-header span {
     font-size: 14px;
+    
+  }
+  .header-nav .profile .dropdown-item span{
+    font-family: "Monsterrat", sans-serif;
   }
   .header-nav .profile .dropdown-item {
     font-size: 14px;
@@ -610,7 +617,8 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 0;
   }
   .header-nav .profile .dropdown-item:hover {
-    background-color: #f6f9ff;
+    background-color: #fddede;
+    color: #aa033b
   }
   
   /*--------------------------------------------------------------
@@ -687,33 +695,35 @@ input[type=number]::-webkit-outer-spin-button {
   .sidebar-nav .nav-link {
     display: flex;
     align-items: center;
-    font-size: 15px;
-    font-weight: 500;
-    color: #4154f1;
+    font-size: 14px;
+    font-weight: 600;
     transition: 0.3;
-    background: #f6f9ff;
     padding: 10px 10px;
     border-radius: 4px;
-    font-family: "Tahoma", sans-serif;
+    color: #fff6f6;
+    background: #cd0045;
+  }
+  .sidebar-nav .nav-link span {
+    font-family: "Monsterrat", sans-serif;
   }
   .sidebar-nav .nav-link i {
     font-size: 15px;
     margin-right: 10px;
-    color: #4154f1;
+    color: #fff6f6;
   }
   .sidebar-nav .nav-link.collapsed {
-    color: #012970;
+    color: #262626;
     background: #fff;
   }
   .sidebar-nav .nav-link.collapsed i {
-    color: #899bbd;
+    color: #262626;
   }
   .sidebar-nav .nav-link:hover {
-    color: #4154f1;
-    background: #f6f9ff;
+    color: #fff6f6;
+    background: #cd0045;
   }
   .sidebar-nav .nav-link:hover i {
-    color: #4154f1;
+    color: #fff6f6;
   }
   .sidebar-nav .nav-link .bi-chevron-down {
     margin-right: 0;
@@ -731,12 +741,14 @@ input[type=number]::-webkit-outer-spin-button {
     display: flex;
     align-items: center;
     font-size: 14px;
-    font-weight: 500;
-    font-family: "Tahoma", sans-serif;
-    color: #012970;
+    font-weight: 600;
+    color: #4d4c4c;
     transition: 0.3;
     padding: 10px 0 10px 20px;
     transition: 0.3s;
+  }
+  .sidebar-nav .nav-content span {
+    font-family: "Monsterrat", sans-serif;
   }
   .sidebar-nav .nav-content a i {
     font-size: 6px;
@@ -745,10 +757,10 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 50%;
   }
   .sidebar-nav .nav-content a:hover, .sidebar-nav .nav-content a.active {
-    color: #4154f1;
+    color: #aa033b;
   }
   .sidebar-nav .nav-content a.active i {
-    background-color: #4154f1;
+    background-color: #aa033b;
   }
  
   /*--------------------------------------------------------------
