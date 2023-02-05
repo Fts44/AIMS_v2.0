@@ -23,7 +23,7 @@ class CreateAccountsTable extends Migration
             $table->string('sr_code')->unique()->nullable();
             $table->string('gsuite_email')->unique()->nullable();
             $table->string('prsn_email')->unique()->nullable();
-            $table->string('contact_no')->unique()->nullable();
+            $table->string('contact')->unique()->nullable();
             $table->string('firstname')->nullable();
             $table->string('middlename')->nullable();
             $table->string('lastname')->nullable();
@@ -47,16 +47,15 @@ class CreateAccountsTable extends Migration
             $table->integer('birth_add_id')->nullable()->unique();
             $table->integer('dorm_add_id')->nullable()->unique();
 
-            $table->integer('fam_id')->nullable()->unique();
+            $table->integer('fd_id')->nullable()->unique();
             $table->integer('fih_id')->nullable()->unique();
 
             $table->integer('ec_id')->nullable()->unique();
            
-            $table->string('curriculum')->nullable();
-            $table->integer('year_level')->nullable();
             $table->integer('gl_id')->nullable();
             $table->integer('dept_id')->nullable();
             $table->integer('prog_id')->nullable();
+            $table->integer('yl_id')->nullable();
 
             $table->integer('mhpi_id')->nullable()->unique();
             $table->integer('mha_id')->nullable()->unique();
