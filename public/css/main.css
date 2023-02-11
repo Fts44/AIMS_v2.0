@@ -26,6 +26,12 @@ input[type=number]::-webkit-outer-spin-button {
   -moz-appearance: none;
   appearance: none; 
 }
+
+input[type='radio'] {
+  accent-color: #cd0045;
+}
+
+
 *{
   font-family: "Monsterrat", sans-serif;
 }
