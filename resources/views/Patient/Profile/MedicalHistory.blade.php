@@ -1,13 +1,13 @@
 @extends('Layouts.PatientMain')
 
 @push('title')
-    <title>Emergency Contact</title>
+    <title>Medical History</title>
 @endpush
 
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle mb-2">
-        <h1>Emergency Contact</h1>
+        <h1>Medical History</h1>
     </div>
 
     <section class="section profile">

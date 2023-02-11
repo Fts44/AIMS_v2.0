@@ -1,7 +1,7 @@
 @extends('Layouts.PatientMain')
 
 @push('title')
-    <title></title>
+    <title>Personal Details</title>
 @endpush
 
 @section('content')
