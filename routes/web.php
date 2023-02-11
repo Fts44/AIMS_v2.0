@@ -59,6 +59,13 @@
     use App\Http\Controllers\Patient\Profile\FamilyDetailsController as FamilyDetailsController;
     use App\Http\Controllers\Patient\Profile\AssessmentDiagnosisController as AssessmentDiagnosisController;
 
+    use App\Http\Controllers\Patient\CovidVaccinationInsuranceController as CovidVaccinationInsuranceController;
+
+    use App\Http\Controllers\Patient\Documents\UploadsController as DocumentUploadController;
+    use App\Http\Controllers\Patient\Documents\PrescriptionController as DocumentPrescriptionController;
+    
+    use App\Http\Controllers\Patient\AttendanceController as AttendanceController;
+
     Route::group(['prefix' => 'pt'], function(){
 
         Route::get('default_route', function(){
@@ -82,6 +89,32 @@
             Route::post('assessment_diagnosis', [AssessmentDiagnosisController::class, 'update'])->name('Patient.Profile.AssessmentDiagnosis.Update');
         });
         
+        Route::prefix('covidvaxxins')->group(function(){
+            Route::get('', [CovidVaccinationInsuranceController::class, 'index'])->name('Patient.COVIDVaccinationInsurance.Index');
 
+            Route::post('covid_vaxstatus_insurance', [CovidVaccinationInsuranceController::class, 'update_vaxstatus_insurance'])->name('Patient.COVIDVaccinationInsurance.Update');
+
+            Route::post('dossage_details_insert', [CovidVaccinationInsuranceController::class, 'insert_dossage_details'])->name('Patient.COVIDDossageDetails.Insert');
+            Route::post('dossage_details_update/{id}', [CovidVaccinationInsuranceController::class, 'update_dossage_details'])->name('Patient.COVIDDossageDetails.Update');
+            Route::post('dossage_details_delete/{id}', [CovidVaccinationInsuranceController::class, 'delete_dossage_details'])->name('Patient.COVIDDossageDetails.Delete');
+       
+            Route::post('file_uploads_insert', [CovidVaccinationInsuranceController::class, 'insert_file'])->name('Patient.COVIDFileUploads.Insert');
+            Route::post('file_uploads_delete/{id}', [CovidVaccinationInsuranceController::class, 'delete_file'])->name('Patient.COVIDFileUploads.Delete');
+        });
+
+        Route::prefix('documents')->group(function(){
+            Route::get('uploads', [DocumentUploadController::class, 'index'])->name('Patient.DocumentsUploads.Index');
+            Route::post('insert', [DocumentUploadController::class, 'insert'])->name('Patient.DocumentsUploads.Insert');
+            Route::post('uploads_delete/{id}', [DocumentUploadController::class, 'delete'])->name('Patient.DocumentsUploads.Delete');
+
+            Route::get('prescription', [DocumentPrescriptionController::class, 'index'])->name('Patient.DocumentsPrescription.Index');
+        });
+
+        Route::prefix('attendance')->group(function(){
+            Route::get('', [AttendanceController::class, 'index'])->name('Patient.Attendance.Index');
+            Route::post('time_in', [AttendanceController::class, 'time_in'])->name('Patient.Attendance.TimeIn');
+            Route::post('time_out/{id}', [AttendanceController::class, 'time_out'])->name('Patient.Attendance.TimeOut');
+        });
     });
+
 // =============================== End Patient ===============================================

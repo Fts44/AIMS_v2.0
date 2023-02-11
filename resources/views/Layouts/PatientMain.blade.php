@@ -40,6 +40,8 @@
 
     @yield('content')
 
+    @include('Components.Modal.PDFViewer')
+
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     
     <!-- bootstrap -->
@@ -47,6 +49,7 @@
     <!-- main js -->
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/functions.js') }}"></script>
+    <script src="{{ asset('js/datatable.js') }}"></script>
 
     <!-- datatables -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>

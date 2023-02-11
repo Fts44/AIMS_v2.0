@@ -31,6 +31,21 @@ input[type='radio'] {
   accent-color: #cd0045;
 }
 
+.modal-title {
+  color: #aa033b;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.swal-button--confirm {
+  background-color: #cd0045 !important;
+  border: 1px solid #cd0045;
+  color: #fff6f6;
+}
+
+.swal-button--confirm:active {
+  background-color: #aa033b !important;
+}
 
 *{
   font-family: "Monsterrat", sans-serif;
@@ -969,6 +984,7 @@ float: right;
   .btn-my-danger {
     background-color: #cd0045;
     color: #ffffff;
+    min-width: 70px;
   }
 
   .btn-my-danger:hover{
