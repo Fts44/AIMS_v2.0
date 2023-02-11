@@ -21,7 +21,7 @@
                     <!-- profile picture -->
                     <div class="row">
 
-                        <div class="col-lg-9">
+                        <div class="col-lg-12">
                             <div class="row">
                                 <div class="col-lg-3 mb-4">
                                     SR-Code
@@ -327,7 +327,7 @@
                             <img id="pfp_preview" class="form-control p-1 mb-2" src="{{ ($user_details->pfp!=NULL) ? asset('storage/profile_picture/'.$user_details->pfp) : asset('image/pfp-default.png') }}" alt="Profile Picture" style="height: 200px; width: 200px;">
                             <div class="input-group input-group-sm mb-4">
                                 <input type="file" name="profile_picture" id="profile_picture" class="form-control form-control-sm" accept=".jpg,.png">
-                                <span class="btn btn-my-danger" id="profile_picture_reset">reset</span>
+                                <span class="btn btn-my-danger" id="profile_picture_reset">Reset</span>
                                 <div class="invalid-feedback" id="profile_picture_error"></div>
                             </div>
                         </div>
