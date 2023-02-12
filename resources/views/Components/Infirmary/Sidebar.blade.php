@@ -47,24 +47,24 @@
             </a>
             <ul id="inventory-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                 <li>
-                    <form id="inv_med" action="" method="GET">
+                    <form id="inv_med" action="{{ route('Admin.Inventory.Medicine.Item.Index') }}" method="GET">
                         @csrf
                         <input type="hidden" name="quantity" value="1">
                         <input type="hidden" name="status" value="1">
                         <input type="hidden" name="day" value="{{ date('Y') }}">
                         <input type="hidden" name="ey" value="{{ date('Y') }}">
-                        <a onclick="$('#inv_med').submit();" style="cursor: pointer;" class="">
-                            <i class="bi bi-circle"></i><span>Medicines</span>
-                        </a>
                     </form>
                     <form id="inv_med_report" action="" method="GET">
                         @csrf
                         <input type="hidden" name="dd" value="{{ date('Y-m-d') }}">
                         <input type="hidden" name="type" value="daily">
                     </form>
+                    <a href="{{ route('Admin.Inventory.Medicine.All.Index') }}" class="">
+                        <i class="bi bi-circle"></i><span>Medicine</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="" class="">
+                    <a href="{{ route('Admin.Inventory.Equipment.All.Index') }}" class="">
                         <i class="bi bi-circle"></i><span>Equipments</span>
                     </a>
                 </li>
@@ -102,20 +102,20 @@
 
     @if(Session('user_type')=='admin')
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" id="sidebar_configuration"  data-bs-target="#configuration-nav" data-bs-toggle="collapse" >
+        <a class="nav-link {{ (str_contains(url()->current(),'configuration')) ? '' : 'collapsed' }}" href="#" id="sidebar_configuration"  data-bs-target="#configuration-nav" data-bs-toggle="collapse" >
             <i class="bi bi-gear"></i>
             <span>Configuration</span>
             <i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="configuration-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <ul id="configuration-nav" class="nav-content collapse {{ (str_contains(url()->current(),'configuration')) ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
             <li>
-                <a href="" class="">
+                <a href="{{ route('Admin.Medicine.Brand.Index') }}" class="{{ (str_contains(url()->current(),'medicine')) ? 'active' : '' }}">
                     <i class="bi bi-circle"></i>
                     <span>Medicines</span>
                 </a>
             </li>
             <li>
-                <a href="" class="">
+                <a href="{{ route('Admin.Equipment.Item.Index') }}" class="{{ (str_contains(url()->current(),'equipment')) ? 'active' : '' }}">
                     <i class="bi bi-circle"></i><span>Equipments</span>
                 </a>
             </li>

@@ -124,6 +124,23 @@
     use App\Http\Controllers\Admin\Transaction\AttendanceCodeController as AdminAttendanceCodeController;
     use App\Http\Controllers\Admin\Transaction\TransactionController as AdminAttendanceController;
     use App\Http\Controllers\Admin\AnnouncementController as AdminAnnouncementController;
+
+    use App\Http\Controllers\Admin\Configuration\Medicine\BrandController as AdminMedicineBrandController;
+    use App\Http\Controllers\Admin\Configuration\Medicine\GenericNameController as AdminMedicineGenericNameController;
+
+    use App\Http\Controllers\Admin\Configuration\Equipment\PlaceController as AdminEquipmentPlaceController;
+    use App\Http\Controllers\Admin\Configuration\Equipment\TypeController as AdminEquipmentTypeController;
+    use App\Http\Controllers\Admin\Configuration\Equipment\BrandController as AdminEquipmentBrandController;
+    use App\Http\Controllers\Admin\Configuration\Equipment\NameController as AdminEquipmentNameController;
+    use App\Http\Controllers\Admin\Configuration\Equipment\ItemController as AdminEquipmentItemController;
+    
+    use App\Http\Controllers\Admin\Inventory\Equipment\AllController as AdminInventoryEquipmentAllController;
+    use App\Http\Controllers\Admin\Inventory\Equipment\ItemController as AdminInventoryEquipmentItemController;
+    use App\Http\Controllers\Admin\Inventory\Equipment\ReportController as AdminInventoryEquipmentReportController;
+    
+    use App\Http\Controllers\Admin\Inventory\Medicine\AllController as AdminInventoryMedicineAllController;
+    use App\Http\Controllers\Admin\Inventory\Medicine\ItemController as AdminInventoryMedicineItemController;
+    use App\Http\Controllers\Admin\Inventory\Medicine\ReportController as AdminInventoryMedicineReportController;
     
     Route::group(['prefix' => 'ip'], function(){
 
@@ -144,5 +161,75 @@
             Route::post('insert', [AdminAnnouncementController::class, 'insert'])->name('Admin.Announcement.Insert');
             Route::post('update/{id}', [AdminAnnouncementController::class, 'update'])->name('Admin.Announcement.Update');
             Route::post('delete/{id}', [AdminAnnouncementController::class, 'delete'])->name('Admin.Announcement.Delete');
+        });
+
+        Route::prefix('configuration')->group(function(){
+
+            Route::prefix('medicine')->group(function(){
+                Route::get('brand', [AdminMedicineBrandController::class, 'index'])->name('Admin.Medicine.Brand.Index');
+                Route::post('brand/insert', [AdminMedicineBrandController::class, 'insert'])->name('Admin.Medicine.Brand.Insert');
+                Route::post('brand/update/{id}', [AdminMedicineBrandController::class, 'update'])->name('Admin.Medicine.Brand.Update');
+                Route::post('brand/delete/{id}', [AdminMedicineBrandController::class, 'delete'])->name('Admin.Medicine.Brand.Delete');
+
+                Route::get('genericname', [AdminMedicineGenericNameController::class, 'index'])->name('Admin.Medicine.GenericName.Index');
+                Route::post('genericname/insert', [AdminMedicineGenericNameController::class, 'insert'])->name('Admin.Medicine.GenericName.Insert');
+                Route::post('genericname/update/{id}', [AdminMedicineGenericNameController::class, 'update'])->name('Admin.Medicine.GenericName.Update');
+                Route::post('genericname/delete/{id}', [AdminMedicineGenericNameController::class, 'delete'])->name('Admin.Medicine.GenericName.Delete');
+            });
+
+            Route::prefix('equipment')->group(function(){
+                Route::get('place', [AdminEquipmentPlaceController::class, 'index'])->name('Admin.Equipment.Place.Index');
+                Route::post('place/insert', [AdminEquipmentPlaceController::class, 'insert'])->name('Admin.Equipment.Place.Insert');
+                Route::post('place/update/{id}', [AdminEquipmentPlaceController::class, 'update'])->name('Admin.Equipment.Place.Update');
+                Route::post('place/delete/{id}', [AdminEquipmentPlaceController::class, 'delete'])->name('Admin.Equipment.Place.Delete');
+
+                Route::get('type', [AdminEquipmentTypeController::class, 'index'])->name('Admin.Equipment.Type.Index');
+                Route::post('type/insert', [AdminEquipmentTypeController::class, 'insert'])->name('Admin.Equipment.Type.Insert');
+                Route::post('type/update/{id}', [AdminEquipmentTypeController::class, 'update'])->name('Admin.Equipment.Type.Update');
+                Route::post('type/delete/{id}', [AdminEquipmentTypeController::class, 'delete'])->name('Admin.Equipment.Type.Delete');
+
+                Route::get('brand', [AdminEquipmentBrandController::class, 'index'])->name('Admin.Equipment.Brand.Index');
+                Route::post('brand/insert', [AdminEquipmentBrandController::class, 'insert'])->name('Admin.Equipment.Brand.Insert');
+                Route::post('brand/update/{id}', [AdminEquipmentBrandController::class, 'update'])->name('Admin.Equipment.Brand.Update');
+                Route::post('brand/delete/{id}', [AdminEquipmentBrandController::class, 'delete'])->name('Admin.Equipment.Brand.Delete');
+
+                Route::get('name', [AdminEquipmentNameController::class, 'index'])->name('Admin.Equipment.Name.Index');
+                Route::post('name/insert', [AdminEquipmentNameController::class, 'insert'])->name('Admin.Equipment.Name.Insert');
+                Route::post('name/update/{id}', [AdminEquipmentNameController::class, 'update'])->name('Admin.Equipment.Name.Update');
+                Route::post('name/delete/{id}', [AdminEquipmentNameController::class, 'delete'])->name('Admin.Equipment.Name.Delete');
+
+                Route::get('item', [AdminEquipmentItemController::class, 'index'])->name('Admin.Equipment.Item.Index');
+                Route::post('item/insert', [AdminEquipmentItemController::class, 'insert'])->name('Admin.Equipment.Item.Insert');
+                Route::post('item/update/{id}', [AdminEquipmentItemController::class, 'update'])->name('Admin.Equipment.Item.Update');
+                Route::post('item/delete/{id}', [AdminEquipmentItemController::class, 'delete'])->name('Admin.Equipment.Item.Delete');
+            });
+        });
+
+        Route::prefix('inventory')->group(function(){
+            Route::get('equipment', [AdminInventoryEquipmentAllController::class, 'index'])->name('Admin.Inventory.Equipment.All.Index');
+            
+            Route::get('equipment/item', [AdminInventoryEquipmentItemController::class, 'index'])->name('Admin.Inventory.Equipment.Item.Index');
+            Route::post('equipment/item/insert', [AdminInventoryEquipmentItemController::class, 'insert'])->name('Admin.Inventory.Equipment.Item.Insert');
+            Route::post('equipment/item/update/{id}', [AdminInventoryEquipmentItemController::class, 'update'])->name('Admin.Inventory.Equipment.Item.Update');
+            Route::post('equipment/item/delete/{id}', [AdminInventoryEquipmentItemController::class, 'delete'])->name('Admin.Inventory.Equipment.Item.Delete');
+
+            Route::get('equipment/report/{year}', [AdminInventoryEquipmentReportController::class, 'index'])->name('Admin.Inventory.Equipment.Report.Index');
+            Route::get('equipment/print/{year}', [AdminInventoryEquipmentReportController::class, 'print'])->name('Admin.Inventory.Equipment.Report.Print');
+        
+            
+            Route::get('medicine', [AdminInventoryMedicineAllController::class, 'index'])->name('Admin.Inventory.Medicine.All.Index');
+
+            Route::get('medicine/item', [AdminInventoryMedicineItemController::class, 'index'])->name('Admin.Inventory.Medicine.Item.Index');
+            Route::post('medicine/item/insert', [AdminInventoryMedicineItemController::class, 'insert'])->name('Admin.Inventory.Medicine.Item.Insert');
+            Route::post('medicine/item/update/{id}', [AdminInventoryMedicineItemController::class, 'update'])->name('Admin.Inventory.Medicine.Item.Update');
+            Route::post('medicine/item/delete/{id}', [AdminInventoryMedicineItemController::class, 'delete'])->name('Admin.Inventory.Medicine.Item.Delete');
+
+            Route::post('medicine/item/dispose/{id}', [AdminInventoryMedicineItemController::class, 'dispose'])->name('Admin.Inventory.Medicine.Item.Dispose.Insert');
+
+            Route::get('meidicine/item/transaction/{id}', [AdminInventoryMedicineItemController::class, 'transaction_index'])->name('Admin.Inventory.Medicine.Item.Transaction.Index');
+            Route::post('meidicine/item/transaction/delete/{id}', [AdminInventoryMedicineItemController::class, 'transaction_delete'])->name('Admin.Inventory.Medicine.Item.Transaction.Delete');
+
+            Route::get('medicine/report', [AdminInventoryMedicineReportController::class, 'index'])->name('Admin.Inventory.Medicine.Report.Index');
+            Route::get('medicine/report/print', [AdminInventoryMedicineReportController::class, 'print'])->name('Admin.Inventory.Medicine.Report.Print');
         });
     });
