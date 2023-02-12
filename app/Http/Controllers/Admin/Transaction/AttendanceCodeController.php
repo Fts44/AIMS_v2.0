@@ -36,10 +36,10 @@ class AttendanceCodeController extends Controller
         return $todays_code;
     }
 
-    public function get_new_code($date){
+    public function get_new_code($id){
         $new_ac_code = rand ( 1000 , 9999 );
 
-        DB::table('attendance_code')->where('ac_date', $date)->update([
+        DB::table('attendance_code')->where('ac_id', $id)->update([
             'ac_code' => $new_ac_code
         ]);
 
@@ -57,12 +57,12 @@ class AttendanceCodeController extends Controller
             ]);
     }
 
-    public function update_status($date){      
+    public function update_status($id){      
         $ac = DB::table('attendance_code')
-            ->where('ac_date', $date)
+            ->where('ac_id', $id)
             ->first();
 
-        DB::table('attendance_code')->where('ac_date', $date)
+        DB::table('attendance_code')->where('ac_id', $id)
             ->update([
                 'ac_status' => ($ac->ac_status) ? 0 : 1
             ]);
