@@ -134,6 +134,7 @@
         });
 
         function post_clear(){
+            reset_inputs();
             $('#lbl_announcement').html('Add');
             $("#form_announcement").attr('action', "{{ route('Admin.Announcement.Insert') }}");
             $('#modal_title').html('Add Announcement');
