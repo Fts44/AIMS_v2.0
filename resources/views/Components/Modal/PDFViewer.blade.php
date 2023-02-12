@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="pdf_viewer_title">Upload Files</h5>
+                <h5 class="modal-title" id="pdf_viewer_title">View Files</h5>
                 <button type="button" class="btn btn-my-danger btn-sm" data-bs-dismiss="modal">Close</button>
             </div>
             <div class="modal-body">
