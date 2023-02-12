@@ -15,8 +15,7 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <!-- <i class="bi bi-person-circle" style="font-size: 18px;"></i> -->
-                    <img src="{{ asset('image/pfp-default.png') }}" alt="Profile">
+                    <img src="{{ (Session::get('user_profilepic')) ? asset('storage/profile_picture').'/'.Session::get('user_profilepic') : asset('image/pfp-default.png') }}" alt="Profile" style="width: auto; height: 50px;">
                     <span class="d-none d-md-block dropdown-toggle ps-2">
                         Account
                     </span>
@@ -31,14 +30,14 @@
                                 {{ ucwords(Session::get('user_firstname')).' '.ucwords(Session::get('user_lastname')) }}
                             @endif
                         </h6>
-                        <span>{{ ucwords(Session::get('user_type')) }}</span>
+                        <span>Patient</span>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
                     
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="">
+                        <a class="dropdown-item d-flex align-items-center" href="{{ route('Patient.ChangePassword.Index') }}">
                             <i class="bi bi-gear"></i>
                             <span>Change Password</span>
                         </a>
