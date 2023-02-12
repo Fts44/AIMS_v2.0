@@ -32,7 +32,7 @@
             </li>
         @if(Session('user_type')=='admin')
             <li class="nav-item">
-                <a class="nav-link collapsed" href="" id="sidebar_announcement">
+                <a class="nav-link collapsed" href="{{ route('Admin.Announcement.Index') }}" id="sidebar_announcement">
                     <i class="bi bi-megaphone"></i>
                     <span>Announcement</span>
                 </a>

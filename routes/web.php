@@ -123,7 +123,8 @@
 // =============================== Start Admin ===============================================
     use App\Http\Controllers\Admin\Transaction\AttendanceCodeController as AdminAttendanceCodeController;
     use App\Http\Controllers\Admin\Transaction\TransactionController as AdminAttendanceController;
-
+    use App\Http\Controllers\Admin\AnnouncementController as AdminAnnouncementController;
+    
     Route::group(['prefix' => 'ip'], function(){
 
         Route::get('default_route', function(){
@@ -136,5 +137,12 @@
             Route::get('census_code', [AdminAttendanceCodeController::class, 'index'])->name('Admin.Transaction.CensusCode.Index');
             Route::get('census_code/{id}', [AdminAttendanceCodeController::class, 'update_status'])->name('Admin.Transaction.CensusCode.Update');
             Route::get('census_code/new/{date}', [AdminAttendanceCodeController::class, 'get_new_code'])->name('Admin.Transaction.CensusCode.Create');
+        });
+
+        Route::prefix('announcement')->group(function(){
+            Route::get('', [AdminAnnouncementController::class, 'index'])->name('Admin.Announcement.Index');
+            Route::post('insert', [AdminAnnouncementController::class, 'insert'])->name('Admin.Announcement.Insert');
+            Route::post('update/{id}', [AdminAnnouncementController::class, 'update'])->name('Admin.Announcement.Update');
+            Route::post('delete/{id}', [AdminAnnouncementController::class, 'delete'])->name('Admin.Announcement.Delete');
         });
     });
