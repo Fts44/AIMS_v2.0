@@ -21,10 +21,6 @@
         Route::get('religion', [PopulateSelect::class, 'religion'])->name('GetReligion');
         Route::get('covidvaccinationbrand', [PopulateSelect::class, 'covid_vaccination_brand'])->name('GetCovidVaccinationBrand');
     });
-// =============================== End of Global Controllers =================================
-
-
-
 // =============================== Start Authentication ======================================
 
     use App\Http\Controllers\Authentication\LoginController as LoginController;
@@ -48,7 +44,7 @@
         Route::post('recover/new', [RecoverController::class, 'recover'])->name('Recover.Create');
     });
 
-// =============================== End Authentication ========================================
+
 
 
 // =============================== Start Patient =============================================
@@ -65,6 +61,8 @@
     use App\Http\Controllers\Patient\Documents\PrescriptionController as DocumentPrescriptionController;
     
     use App\Http\Controllers\Patient\AttendanceController as AttendanceController;
+
+    use App\Http\Controllers\Patient\PasswordController as PasswordController;
 
     Route::group(['prefix' => 'pt'], function(){
 
@@ -115,6 +113,28 @@
             Route::post('time_in', [AttendanceController::class, 'time_in'])->name('Patient.Attendance.TimeIn');
             Route::post('time_out/{id}', [AttendanceController::class, 'time_out'])->name('Patient.Attendance.TimeOut');
         });
+
+        Route::prefix('password')->group(function(){
+            Route::get('', [PasswordController::class, 'index'])->name('Patient.ChangePassword.Index');
+            Route::post('update', [PasswordController::class, 'update'])->name('Patient.ChangePassword.Update');
+        });
     });
 
-// =============================== End Patient ===============================================
+// =============================== Start Admin ===============================================
+    use App\Http\Controllers\Admin\Transaction\AttendanceCodeController as AdminAttendanceCodeController;
+    use App\Http\Controllers\Admin\Transaction\TransactionController as AdminAttendanceController;
+
+    Route::group(['prefix' => 'ip'], function(){
+
+        Route::get('default_route', function(){
+            return redirect()->route('Admin.Transaction.CensusCode.Index');
+        })->name('infirmary_personnel');
+
+        Route::prefix('transaction')->group(function(){
+            Route::get('attendance/{date}',[AdminAttendanceController::class, 'index'])->name('Admin.Transaction.Attendance.Index');
+
+            Route::get('census_code', [AdminAttendanceCodeController::class, 'index'])->name('Admin.Transaction.CensusCode.Index');
+            Route::get('census_code/{id}', [AdminAttendanceCodeController::class, 'update_status'])->name('Admin.Transaction.CensusCode.Update');
+            Route::get('census_code/new/{date}', [AdminAttendanceCodeController::class, 'get_new_code'])->name('Admin.Transaction.CensusCode.Create');
+        });
+    });
