@@ -176,7 +176,8 @@ class PersonalDetailsController extends Controller
                         $file = $request->file('profile_picture');
                         $file_name = $user_id.'_'.time().'.'.$file->extension();
                         $upload = $file->storeAs($path, $file_name);
-
+                        
+                        Session(['user_profilepic' => $file_name]);
                         if($user_details->pfp){
                             Storage::delete($path.$user_details->pfp); 
                         }
