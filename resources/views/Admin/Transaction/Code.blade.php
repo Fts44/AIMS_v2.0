@@ -48,7 +48,7 @@
                             <button class="btn btn-sm {{ ($c->ac_status) ? 'btn-secondary' : 'btn-success' }}" onclick="update_status('{{ $fac_date }}', '{{ $c->ac_status }}', '{{ $c->ac_id }}')">
                                 <i class="bi {{ ($c->ac_status) ? 'bi-x-circle' : 'bi-check-circle' }}"></i>
                             </button>
-                            <button class="btn btn-sm btn-primary" onclick="update_code('{{ $fac_date }}', '{{ $c->ac_id }}')">
+                            <button class="btn btn-sm btn-danger" onclick="update_code('{{ $fac_date }}', '{{ $c->ac_id }}')">
                                 <i class="bi bi-arrow-repeat"></i>
                             </button>
                         </td>
